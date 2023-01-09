@@ -1,12 +1,13 @@
 import { NextPage } from "next";
 import { useState } from 'react';
 import { executeRequest } from "../services/api";
+import Link from 'next/link'
 
 type LoginProps = {
-    setToken(s:string):void
+    setToken(s: string): void
 }
 
-export const Login: NextPage<LoginProps> = ({setToken}) => {
+export const Login: NextPage<LoginProps> = ({ setToken }) => {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +29,7 @@ export const Login: NextPage<LoginProps> = ({setToken}) => {
             }
 
             const result = await executeRequest('login', 'POST', body);
-            if(result && result.data){
+            if (result && result.data) {
                 const obj = result.data;
                 localStorage.setItem('accessToken', obj.token);
                 localStorage.setItem('name', obj.name);
@@ -37,9 +38,9 @@ export const Login: NextPage<LoginProps> = ({setToken}) => {
             }
         } catch (e: any) {
             console.log('Ocorreu erro ao efetuar login:', e);
-            if(e?.response?.data?.error){
+            if (e?.response?.data?.error) {
                 setErrorMsg(e?.response?.data?.error);
-            }else {
+            } else {
                 setErrorMsg('Ocorreu erro ao efetuar login');
             }
         }
@@ -67,6 +68,7 @@ export const Login: NextPage<LoginProps> = ({setToken}) => {
                 </div>
 
                 <button onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
+                <span> Sou novo! quero <a className="register" href={"register"}>criar uma conta!</a></span>
             </div>
         </div>
     );

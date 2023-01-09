@@ -26,10 +26,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultMsgRespo
         if (!email || !emailRegex.test(email)) {
             return res.status(400).json({ error: 'Email inválido' });
         }
-
-        if (!password || password.length < 6 || !password.includes('@')) {
-            return res.status(400).json({ error: 'Senha inválida' });
+        
+        if (!password) {
+            return res.status(400).json({ error: 'Informe uma senha!' });
         }
+
+        const senhaRegex = /^(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
+
+        if (!senhaRegex.test(password)) {
+            return res.status(400).json({ error: 'Senha inválida! A senha precisa ter no mínimo 6 dígitos, com ao menos um caracter especial (!@#$%...)' });
+        }
+
 
         const sameEmailUser = await UserModel.findOne({email});
         if(sameEmailUser){

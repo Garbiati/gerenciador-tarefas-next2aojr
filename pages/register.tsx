@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Home } from '../containers/Home';
-import { Login } from '../containers/Login'
+import { Register } from '../containers/Register'
 
-export default function Index() {
+export default function RegisterUser() {
   const [accessToken, setAccessToken] = useState('');
 
   useEffect(() => {
@@ -14,5 +14,5 @@ export default function Index() {
     }
   }, []);
 
-  return !accessToken ? <Login setToken={setAccessToken}/> : <Home setToken={setAccessToken}/>;
+  return !accessToken ? <Register setToken={setAccessToken}/> : <Home setToken={setAccessToken}/>;
 }

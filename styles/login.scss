@@ -10,19 +10,26 @@
 
     .form{
         padding: 10px;
-
+        word-break: break-all;        
+   
         p{
             color: $errorColor;
             font-size: 16px;
             letter-spacing: 0.05em;
             text-align: center;
             font-weight: bold;
+            width: 400px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            
         }
 
         div{
             display: flex;
             padding: 0px 10px;
             margin-bottom: 30px;
+            
 
             img{
                 width: 18px;
@@ -54,8 +61,23 @@
             border-radius: 12px;
             font-size: 16px;
             margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        
+        span{
+            .register{
+                text-decoration: none;
+                color: $primaryColor;
+            }
+        }
+        span{
+            .login{
+                text-decoration: none;
+                color: $primaryColor;
+            }
         }
     }
+
 
     @media screen and (min-width: $mediaQueryDesktop) {
         display: flex;
