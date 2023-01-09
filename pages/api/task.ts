@@ -6,6 +6,7 @@ import { UserModel } from "../../models/UserModel";
 import { DefaultMsgResponse } from "../../types/DefaultMsgResponse";
 import { Task } from "../../types/Task";
 import moment from 'moment';
+import tz from 'moment-timezone';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultMsgResponse | object>) => {
     try {
@@ -54,7 +55,7 @@ const getTasks = async (req: NextApiRequest, res: NextApiResponse<DefaultMsgResp
     } as any;
 
     if (params?.finishPrevisionStart) {
-        const inputDate = moment(params?.finishPrevisionStart);
+        const inputDate = moment(params?.finishPrevisionStart);        
         query.finishPrevisionDate = { $gte: inputDate.format('yyyy-MM-DD') }
     }
 

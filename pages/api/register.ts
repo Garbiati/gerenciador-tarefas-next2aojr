@@ -31,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultMsgRespo
             return res.status(400).json({ error: 'Informe uma senha!' });
         }
 
-        const senhaRegex = /^(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/;
+        const senhaRegex = /^(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{6,}$/;
 
         if (!senhaRegex.test(password)) {
             return res.status(400).json({ error: 'Senha inválida! A senha precisa ter no mínimo 6 dígitos, com ao menos um caracter especial (!@#$%...)' });
